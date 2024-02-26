@@ -1,0 +1,8 @@
+langchain
+pypdf
+sentence-transformers
+huggingface_hub
+accelerate
+torch
+transformers
+faiss-cpu # or faiss-gpu
