@@ -3,7 +3,7 @@ services:
   web:
     platform: linux/x86_64
     image: odoo:16
-    command: odoo -u "odoo_llm_auto_responder" -d oesch --limit-time-real 99999 --dev=all
+    command: odoo -u "odoo_llm_auto_responder" -d abilium_llm --limit-time-real 99999 --dev=all
     user: "root:root"
     cpus: 4
     volumes:
