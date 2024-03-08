@@ -25,6 +25,8 @@
     ],
     # always loaded
     'data': [
+        'views/menu.xml',
+        'views/hello_world.xml'
     ],
     'demo': [
 
