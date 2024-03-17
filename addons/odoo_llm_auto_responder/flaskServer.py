@@ -8,7 +8,7 @@ def hello_world():
     return "Hello, World!"
 
 
-@app.route('/ping', methods=['GET', 'POST'])
+@app.route('/ping', methods=['GET', 'POST']) # test
 def ping_pong():
     # You can return a simple string
     # return "pong"
