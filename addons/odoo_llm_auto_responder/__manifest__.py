@@ -25,12 +25,13 @@
     ],
     # always loaded
     'data': [
+        "data/llm_auto_responder_data.xml"
     ],
     'demo': [
-        
+
     ],
 
     'assets': {
-     
+
     }
 }
