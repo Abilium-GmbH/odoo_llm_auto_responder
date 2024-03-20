@@ -1,3 +1,4 @@
+#this is the flaskserver that runs over docker
 import os
 from flask import Flask, jsonify
 app = Flask(__name__)
