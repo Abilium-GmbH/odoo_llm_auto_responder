@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <data>
+    <data noupdate="1">
 <!-- New added stage -->
 <record id="helpdesk_ticket_stage_KI_answer" model="helpdesk.ticket.stage">
             <field name="sequence">1</field>
