@@ -18,6 +18,7 @@
             <field name="body_html" type="html">
                 <p>Hallo </p>
                 <p>Hier steht die Antwort des LLMs</p>
+                # Hier die Antwort vom LLM einfügen
             </field>
         </record>
 <!-- New added stage -->
