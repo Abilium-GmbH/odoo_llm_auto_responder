@@ -1,1 +1,4 @@
 flask
+transformers
+sentence-transformers
+requests
