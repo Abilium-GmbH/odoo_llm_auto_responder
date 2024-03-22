@@ -10,11 +10,11 @@ def read_data_from_file(file_path):
     return data
 
 # Path to the text file containing contexts
-file_path_context = "C:/UniBe/Informatik/PSE/context.txt"
+file_path_context = "context.txt"
 contexts = read_data_from_file(file_path_context)
 
 #Path to the text file containing questions
-file_path_questions = "C:/UniBe/Informatik/PSE/questions.txt"
+file_path_questions = "questions.txt"
 questions = read_data_from_file(file_path_questions)
 
 
