@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data noupdate="1">
-        <!--Email template
-        <record id="KI_answer_email_template" model="mail.template">
+        <!-- Email-Template for KI Answer -->
+        <record id="ki_answer_template" model="mail.template">
             <field name="name">KI Answer</field>
             <field name="model_id" ref="model_helpdesk_ticket" />
             <field name="email_from">{{object.company_id.partner_id.email}}</field>
@@ -16,13 +16,12 @@
             <field name="auto_delete" eval="False" />
             <field name="lang">{{object.partner_id.lang}}</field>
             <field name="body_html" type="html">
-                <p>Hallo </p>
-                <p>Hier steht die Antwort des LLMs</p>
-                <!-Hier die Antwort vom LLM einfügen
-                <t t-out="object.ki_answer" />
+                <p>Guten Tag </p>
+                <p>Das ist ein Test</p>
+                <!-- Output of ki_answer field entry -->
+                <p> <t t-out="object.ki_answer" /> </p>
             </field>
         </record>
-        -->
 <!-- New added stage -->
 <record id="helpdesk_ticket_stage_KI_answer" model="helpdesk.ticket.stage">
             <field name="sequence">1</field>
