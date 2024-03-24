@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
     <data noupdate="1">
-        <!-- Email-Template for KI Answer -->
-        <record id="ki_answer_template" model="mail.template">
-            <field name="name">KI Answer</field>
+        <!-- Email-Template for AI Answer -->
+        <record id="ai_answer_template" model="mail.template">
+            <field name="name">AI Answer</field>
             <field name="model_id" ref="model_helpdesk_ticket" />
             <field name="email_from">{{object.company_id.partner_id.email}}</field>
             <field
@@ -18,14 +18,14 @@
             <field name="body_html" type="html">
                 <p>Guten Tag </p>
                 <p>Das ist ein Test</p>
-                <!-- Output of ki_answer field entry -->
-                <p> <t t-out="object.ki_answer" /> </p>
+                <!-- Output of ai_answer field entry -->
+                <p> <t t-out="object.ai_answer" /> </p>
             </field>
         </record>
 <!-- New added stage -->
-<record id="helpdesk_ticket_stage_KI_answer" model="helpdesk.ticket.stage">
+<record id="helpdesk_ticket_stage_ai_answer" model="helpdesk.ticket.stage">
             <field name="sequence">1</field>
-            <field name="name">KI Answer</field>
+            <field name="name">AI Answer</field>
             <field name="unattended">False</field>
             <field name="closed">False</field>
             <field name="company_id" />

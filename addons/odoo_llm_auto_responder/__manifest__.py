@@ -27,7 +27,7 @@
     # always loaded
     'data': [
         "data/llm_auto_responder_data.xml",
-        "views/ki_button_view.xml"
+        "views/ai_button_view.xml"
     ],
     'demo': [
 
