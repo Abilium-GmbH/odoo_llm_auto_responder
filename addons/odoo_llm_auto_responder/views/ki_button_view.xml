@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <!-- Add a button to start the AI generating process -->
+    <record id="ki_answer_view_form" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='assign_to_me']" position="after">
+                 <button name="ki_answer_button" string="KI Answer" type="object" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
