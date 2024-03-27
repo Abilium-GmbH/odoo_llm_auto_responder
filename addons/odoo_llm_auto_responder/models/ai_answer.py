@@ -1,4 +1,7 @@
 from odoo import fields, models
+import logging
+_logger = logging.getLogger(__name__)
+
 
 
 class HelpdeskTicket(models.Model):
@@ -9,5 +12,5 @@ class HelpdeskTicket(models.Model):
 
     # This method gets called when button is clicked -> Insert the DB queries here
     def ai_answer_button(self):
-        print("Test button clicked..")
+        _logger.info("Test button clicked..")
 
