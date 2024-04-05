@@ -8,7 +8,7 @@ class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
     # Adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI
-    ai_answer = fields.Text()
+    ai_answer = fields.Text(string="AI Answer")
 
     # This method gets called when button is clicked -> Insert the DB queries here
     def ai_answer_button(self):
