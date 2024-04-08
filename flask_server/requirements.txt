@@ -1,5 +1,4 @@
 flask
-torch
+transformers
 sentence-transformers
-transformers==4.39.3
 requests
