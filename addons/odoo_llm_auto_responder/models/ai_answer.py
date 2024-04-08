@@ -25,14 +25,14 @@ class HelpdeskTicket(models.Model):
     def ai_answer_button(self):
         _logger.info("Button was clicked...")
 
-    # Version 1
-        """self.env.cr.execute("insert into helpdesk.ticket (ai_answer) values ('Das ist eine vorgefertigte Antwort!')")
+    """# Version 1
+        self.env.cr.execute("update helpdesk_ticket set ai_answer 'Das ist eine vorgefertigte Antwort!'")
         self.env.cr.commit()
 
-        res = self.env.cr.fetchall("select description from helpdesk.ticket")
-        logger.info(res)
+        res = self.env.cr.fetchall("select description from helpdesk_ticket")
+        _logger.info(res)"""
 
-    # Version 2
+    """"# Version 2
          # Open cursor to perform database operations
         cur = conn.cursor()
     # Insert data
@@ -40,8 +40,8 @@ class HelpdeskTicket(models.Model):
     # Query the database
         cur.execute("SELECT description FROM helpdesk.ticket")
         descriptions = cur.fetchall() 
-        logger.info(descriptions)"""
+        logger.info(descriptions)
 
     # Close communication with database
-    # cur.close()
+    # cur.close()"""
 
