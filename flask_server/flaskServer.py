@@ -1,10 +1,12 @@
 # this file runs a test-flaskserver
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from transformers import pipeline
 
 from llm_integration import get_llm_response
 
 app = Flask(__name__)
+CORS(app)
 
 # Initialize the pipeline once when the server starts for the llm
 qa_pipeline = pipeline(
