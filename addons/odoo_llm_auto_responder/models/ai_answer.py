@@ -30,7 +30,6 @@ class HelpdeskTicket(models.Model):
         self.env.cr.execute("update helpdesk_ticket set ai_answer = 'Das ist eine vorgefertigte Antwort!'")
         self.env.cr.commit()
 
-
         self.env.cr.execute("select number from helpdesk_ticket where id = %s", (self.id,))
         number = self.env.cr.fetchone()
         _logger.info(number)
@@ -38,6 +37,10 @@ class HelpdeskTicket(models.Model):
         self.env.cr.execute("select ai_answer from helpdesk_ticket")
         ai_answer = self.env.cr.fetchone()
         _logger.info(ai_answer)
+
+        self.env.cr.execute("select description from helpdesk_ticket")
+        description = self.env.cr.fetchone()
+        _logger.info(description)
 
     """"# Version 2
          # Open cursor to perform database operations
