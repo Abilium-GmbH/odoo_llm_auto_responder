@@ -1,17 +1,8 @@
-from odoo import fields, models
+from odoo import fields, models, api
 import psycopg2
 import logging
+
 _logger = logging.getLogger(__name__)
-
-# Connect to an existing database
-""" conn = psycopg2.connect(
-    database='postgres',
-    user='odoo',
-    password='odoo',
-    host='0.0.0.0',
-    port='5432') """
-
-
 
 
 class HelpdeskTicket(models.Model):
@@ -20,15 +11,24 @@ class HelpdeskTicket(models.Model):
     # Adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI
     ai_answer = fields.Text(string="AI Answer")
 
-
     # This method gets called when button is clicked -> Insert the DB queries here
+    # @api.model
     def ai_answer_button(self):
         _logger.info("Button was clicked...")
+        # New version
+        self.write({'ai_answer': 'Das hier ist eine Testantwort!'})
+        # ticket_id = self.id
+        # description = self.env["helpdesk.ticket"].browse([ticket_id])
+        # self.read([description])
+        _logger.info(self.id)
+        _logger.info(self.ai_answer)
+        _logger.info(self.description)
 
-    # Version 1
-
+    """ 
+    # Old version -> works
         self.env.cr.execute("update helpdesk_ticket set ai_answer = 'Das ist eine vorgefertigte Antwort!'")
         self.env.cr.commit()
+        
 
         self.env.cr.execute("select number from helpdesk_ticket where id = %s", (self.id,))
         number = self.env.cr.fetchone()
@@ -42,16 +42,4 @@ class HelpdeskTicket(models.Model):
         description = self.env.cr.fetchone()
         _logger.info(description)
 
-    """"# Version 2
-         # Open cursor to perform database operations
-        cur = conn.cursor()
-    # Insert data
-        cur.execute("INSERT INTO helpdesk.ticket (ai_answer) VALUES ('Das ist eine vorgefertigte Antwort!')")
-    # Query the database
-        cur.execute("SELECT description FROM helpdesk.ticket")
-        descriptions = cur.fetchall() 
-        logger.info(descriptions)
-
-    # Close communication with database
-    # cur.close()"""
-
+    """
