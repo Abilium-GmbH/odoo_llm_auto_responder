@@ -1,6 +1,8 @@
 from odoo import fields, models, api
-import psycopg2
 import logging
+import requests
+import odoo.http as http
+
 
 _logger = logging.getLogger(__name__)
 
@@ -23,6 +25,9 @@ class HelpdeskTicket(models.Model):
         _logger.info(self.id)
         _logger.info(self.ai_answer)
         _logger.info(self.description)
+
+    """ payload = {'id': self.id, 'description': self.description, 'ai_answer': none}
+        r = requests.get('http://URL des Flaskservers', params=payload)"""
 
     """ 
     # Old version -> works
