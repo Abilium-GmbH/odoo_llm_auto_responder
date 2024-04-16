@@ -10,7 +10,7 @@ _logger = logging.getLogger(__name__)
 class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
-    # adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI
+    # adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI.
     ai_answer = fields.Text(string="AI Answer")
 
     # this method gets called when button is clicked
