@@ -1,9 +1,8 @@
-FROM huggingface/transformers-pytorch-gpu:3.3.0
+FROM python:3.10
 RUN mkdir /usr/src/app/
 WORKDIR /usr/src/app/
 COPY . /usr/src/app/
 EXPOSE 5000
-RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 
