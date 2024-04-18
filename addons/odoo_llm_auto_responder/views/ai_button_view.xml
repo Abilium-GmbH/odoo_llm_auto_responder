@@ -11,7 +11,7 @@
                         <field name="last_stage_update" readonly="1"/>
                         <field name="assigned_date" readonly="1"/>
                         <field name="closed_date" readonly="1"/>
-                        <field name="ai_answer_text" />
+                        <field name="ai_answer" />
                         <button string="Regenerate Answer" name="ai_answer_button" type="object"
                                         class="oe_highlight" attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>
                     </group>

@@ -11,7 +11,7 @@ class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
     # adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI.
-    ai_answer_text = fields.Text(string="AI Answer")
+    ai_answer = fields.Text(string="AI Answer")
 
     # this method gets called when button is clicked
     def ai_answer_button(self):
@@ -34,7 +34,7 @@ class HelpdeskTicket(models.Model):
         response = requests.post(url, data=json_data, headers=headers)
         response_data = response.json()  # response von KI
         _logger.info("response received %s", response_data)
-        self.ai_answer_text = 'Ki responded with: ' + response_data['text']
+        self.ai_answer = 'Ki responded with: ' + response_data['text']
 
 
 
