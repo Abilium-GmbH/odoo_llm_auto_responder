@@ -21,16 +21,19 @@
     # any module necessary for this one to work correctly
     'depends': [
         'base',
-        'web'
+        'web',
+        'helpdesk_mgmt'
     ],
     # always loaded
     'data': [
+        "data/llm_auto_responder_data.xml",
+        "views/ai_button_view.xml",
     ],
     'demo': [
-        
+
     ],
 
     'assets': {
-     
+
     }
 }

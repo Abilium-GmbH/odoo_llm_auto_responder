@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <!-- Email-Template for AI Answer -->
+        <record id="ai_answer_template" model="mail.template">
+            <field name="name">AI Answer</field>
+            <field name="model_id" ref="model_helpdesk_ticket" />
+            <field name="email_from">{{object.company_id.partner_id.email}}</field>
+            <field
+                name="email_cc"
+            >{{not object.partner_id and object.partner_email or ''}},</field>
+            <field
+                name="subject"
+            >{{object.company_id.name}} Ticket Assignment (Ref {{object.number or 'n/a' }})</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="auto_delete" eval="False" />
+            <field name="lang">{{object.partner_id.lang}}</field>
+            <field name="body_html" type="html">
+                <p>Guten Tag </p>
+                <p>Das ist ein Test</p>
+                <!-- Output of ai_answer field entry -->
+                <p> <t t-out="object.ai_answer" /> </p>
+            </field>
+        </record>
+<!-- New added stage -->
+<record id="helpdesk_ticket_stage_ai_answer" model="helpdesk.ticket.stage">
+            <field name="sequence">1</field>
+            <field name="name">AI Answer</field>
+            <field name="unattended">False</field>
+            <field name="closed">False</field>
+            <field name="company_id" />
+        </record>
+    </data>
+</odoo>
