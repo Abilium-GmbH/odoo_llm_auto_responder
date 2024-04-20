@@ -91,12 +91,12 @@ def llm_answer(data):
     requests = LLMRequest.query.all()
     context = "\n".join(req.context for req in requests)
     question = data.get("question")
-
+    qId = data.get("qId")
     if not context or not question:
         return logger.info("Please provide both a context and a question"), 400
 
     answer = qa_pipeline(context=context, question=question)
-    return logger.info(answer), 200
+    return logger.info(f"Answer: {answer}, Question ID: {qId}"), 200
 
 
 @app.route('/llm', methods=['POST'])
