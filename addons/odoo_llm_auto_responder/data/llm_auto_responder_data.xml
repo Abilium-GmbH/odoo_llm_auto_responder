@@ -17,9 +17,8 @@
             <field name="lang">{{object.partner_id.lang}}</field>
             <field name="body_html" type="html">
                 <p>Guten Tag </p>
-                <p> <t t-out="object.description" /> </p>
-                <!-- Output of ai_answer field entry -->
-                <p> <t t-out="object.ai_answer" /> </p>
+                <p> <b>Frage: </b> <t t-out="object.description" /> </p>
+                <p> <b>Antwort: </b> <t t-out="object.ai_answer" /> </p>
             </field>
         </record>
 <!-- New added stage -->
