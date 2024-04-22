@@ -17,7 +17,7 @@
             <field name="lang">{{object.partner_id.lang}}</field>
             <field name="body_html" type="html">
                 <p>Guten Tag </p>
-                <p>Das ist ein Test</p>
+                <p> <t t-out="object.description" /> </p>
                 <!-- Output of ai_answer field entry -->
                 <p> <t t-out="object.ai_answer" /> </p>
             </field>
