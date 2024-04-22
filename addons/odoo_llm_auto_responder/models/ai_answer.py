@@ -20,8 +20,8 @@ class HelpdeskTicket(models.Model):
         self.ai_answer = 'KI responded with: ' + self.description
 
         record_dict = {
-            'id': self.id,
-            'description': self.description,
+            "qId": self.id,
+            "question": self.description,
         }
 
 
@@ -30,7 +30,7 @@ class HelpdeskTicket(models.Model):
 
         json_data = json.dumps(record_dict)
         headers = {'Content-Type': 'application/json'}
-        url = 'http://localhost:5000/data'
+        url = 'http://localhost:5001/data'
         response = requests.post(url, data=json_data, headers=headers)
         response_data = response.json()  # response von KI
         _logger.info("response received %s", response_data)
