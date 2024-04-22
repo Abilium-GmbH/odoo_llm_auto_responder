@@ -31,10 +31,7 @@ class HelpdeskTicket(models.Model):
         json_data = json.dumps(record_dict)
         headers = {'Content-Type': 'application/json'}
         url = 'http://localhost:5001/data'
-        response = requests.post(url, data=json_data, headers=headers)
-        response_data = response.json()  # response von KI
-        _logger.info("response received %s", response_data)
-        self.ai_answer = 'Ki responded with: ' + response_data['text']
+        requests.post(url, data=json_data, headers=headers)
 
 
 
