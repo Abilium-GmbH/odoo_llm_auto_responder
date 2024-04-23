@@ -49,6 +49,7 @@ def store_data():
         db.session.rollback()
         return jsonify({'error': 'Failed to store data', 'exception': str(e)}), 500
 
+
 #function to load all data from the db
 @app.route('/load', methods=['GET'])
 def load_data():
@@ -98,7 +99,7 @@ def llm_answer(data):
 
     answer = qa_pipeline(context=context, question=question)
     str_ans = answer.get("answer")
-    llm_return = {'id': qId, 'ai_answer': str_ans}
+    llm_return = {"params":{'id': qId, 'ai_answer': str_ans}}
     logger.info(f"LLM return: {str_ans}")
     try:
         response = requests.post("http://web:8069/ai_answer/answer", json=llm_return)
@@ -108,19 +109,6 @@ def llm_answer(data):
         return jsonify({'error': 'Failed to communicate with AIAnswerController', 'exception': str(e)}), 500
 
     return logger.info(f"Answer: {answer}, Question ID: {qId}"), 200
-
-
-@app.route('/llm', methods=['POST'])
-def llm_endpoint():
-    data = request.get_json()
-    context = data.get("context")
-    question = data.get("question")
-
-    if not context or not question:
-        return jsonify({"error": "Please provide both a context and a question"}), 400
-
-    answer = qa_pipeline(context=context, question=question)
-    return jsonify(answer), 200
 
 
 if __name__ == '__main__':
