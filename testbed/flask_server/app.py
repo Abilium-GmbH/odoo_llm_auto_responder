@@ -5,6 +5,7 @@ from transformers import pipeline
 from flask_executor import Executor
 from flask_sqlalchemy import SQLAlchemy
 import logging
+import requests
 
 app = Flask(__name__)
 executor = Executor(app)
@@ -88,14 +89,24 @@ def receive_data():
 
 
 def llm_answer(data):
-    requests = LLMRequest.query.all()
-    context = "\n".join(req.context for req in requests)
+    llm_requests = LLMRequest.query.all()
+    context = "\n".join(req.context for req in llm_requests)
     question = data.get("question")
     qId = data.get("qId")
     if not context or not question:
         return logger.info("Please provide both a context and a question"), 400
 
     answer = qa_pipeline(context=context, question=question)
+    str_ans = answer.get("answer")
+    llm_return = {'id': qId, 'ai_answer': str_ans}
+    logger.info(f"LLM return: {str_ans}")
+    try:
+        response = requests.post("http://web:8069/ai_answer/answer", json=llm_return)
+        logger.info(f"Response from AIAnswerController: {response.text}")
+    except Exception as e:
+        logger.error(f"Failed to send data to AIAnswerController: {str(e)}")
+        return jsonify({'error': 'Failed to communicate with AIAnswerController', 'exception': str(e)}), 500
+
     return logger.info(f"Answer: {answer}, Question ID: {qId}"), 200
 
 
@@ -113,8 +124,6 @@ def llm_endpoint():
 
 
 if __name__ == '__main__':
-    logger.info("Starting Flask server, loading LLM")
     # define the localhost ip and the port that is going to be used
     # in some future article, we are going to use an env variable instead a hardcoded port
     app.run(host='0.0.0.0', port=os.getenv('PORT'))
-    logger.info('Server ready.')

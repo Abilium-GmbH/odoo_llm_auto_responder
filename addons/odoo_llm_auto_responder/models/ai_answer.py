@@ -17,7 +17,7 @@ class HelpdeskTicket(models.Model):
     def ai_answer_button(self):
         _logger.info("Test button clicked..")
 
-        self.ai_answer = 'KI responded with: ' + self.description
+        #self.ai_answer = 'KI responded with: ' + self.description
 
         json_data = {
             "qId": self.id,
@@ -27,8 +27,8 @@ class HelpdeskTicket(models.Model):
 
 
         headers = {'Content-Type': 'application/json'}
-        url = 'http://localhost:5001/data'
-        requests.post(url, data=json_data, headers=headers)
+        url = 'http://app:5000/data'
+        requests.post(url, json=json_data, headers=headers)
 
 
 
