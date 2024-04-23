@@ -19,16 +19,13 @@ class HelpdeskTicket(models.Model):
 
         self.ai_answer = 'KI responded with: ' + self.description
 
-        record_dict = {
+        json_data = {
             "qId": self.id,
             "question": self.description,
         }
 
 
-        with open('record_dict.json', 'w') as json_file:
-            json.dump(record_dict, json_file, indent=4)
 
-        json_data = json.dumps(record_dict)
         headers = {'Content-Type': 'application/json'}
         url = 'http://localhost:5001/data'
         requests.post(url, data=json_data, headers=headers)
