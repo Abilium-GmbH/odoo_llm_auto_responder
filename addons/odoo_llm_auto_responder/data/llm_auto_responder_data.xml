@@ -21,13 +21,5 @@
                 <p> <b>Antwort: </b> <t t-out="object.ai_answer" /> </p>
             </field>
         </record>
-<!-- New added stage -->
-<record id="helpdesk_ticket_stage_ai_answer" model="helpdesk.ticket.stage">
-            <field name="sequence">1</field>
-            <field name="name">AI Answer</field>
-            <field name="unattended">False</field>
-            <field name="closed">False</field>
-            <field name="company_id" />
-        </record>
     </data>
 </odoo>
