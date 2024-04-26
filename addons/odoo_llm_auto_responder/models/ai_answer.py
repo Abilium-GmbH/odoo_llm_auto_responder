@@ -1,6 +1,5 @@
 from odoo import fields, models, api
-import os
-import json
+from odoo.exceptions import AccessError
 import logging
 import requests
 _logger = logging.getLogger(__name__)
@@ -29,7 +28,11 @@ class HelpdeskTicket(models.Model):
 
         headers = {'Content-Type': 'application/json'}
         url = 'http://app:5000/data'
-        requests.post(url, json=json_data, headers=headers)
+        try:
+            requests.post(url, json=json_data, headers=headers)
+        except:
+            _logger.info("LLM not available")
+            raise AccessError("LLM not available")
 
 
 
