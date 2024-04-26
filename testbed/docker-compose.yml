@@ -12,8 +12,11 @@ services:
       - ../addons:/mnt/extra-addons
     depends_on:
       - db
+      - app
     ports:
       - "8069:8069"
+    networks:
+      - main
   db:
     platform: linux/x86_64
     image: postgres:12
@@ -27,8 +30,28 @@ services:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
+    networks:
+      - main
 #    command: ["postgres", "-c", "log_statement=all"]
+  app:
+    build:
+      context: ./flask_server/
+      dockerfile: Dockerfile
+    # image: customname/yourimage:version # Use this line if you want to name and tag your built image
+    platform: linux/amd64
+    volumes:
+      - ./flask_server/:/usr/src/app/
+    ports:
+      - "5001:5000"
+    environment:
+      - PORT=5000
+      - FLASK_DEBUG=1
+    networks:
+      - main
 volumes:
   odoo-web-data:
   odoo-db-data:
+  flaskserver-data:
+networks:
+  main:
 

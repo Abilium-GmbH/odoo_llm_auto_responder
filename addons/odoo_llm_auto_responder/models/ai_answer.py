@@ -1,0 +1,41 @@
+from odoo import fields, models, api
+import os
+import json
+import logging
+import requests
+_logger = logging.getLogger(__name__)
+
+
+
+class HelpdeskTicket(models.Model):
+    _inherit = "helpdesk.ticket"
+
+    # adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI.
+    ai_answer = fields.Text(string="AI Answer")
+    ai_answer_ready = fields.Boolean(string="AI Answer is ready")
+
+    # this method gets called when button is clicked
+    def ai_answer_button(self):
+        _logger.info("Test button clicked..")
+
+        #self.ai_answer = 'KI responded with: ' + self.description
+
+        json_data = {
+            "qId": self.id,
+            "question": self.description,
+        }
+
+
+
+        headers = {'Content-Type': 'application/json'}
+        url = 'http://app:5000/data'
+        requests.post(url, json=json_data, headers=headers)
+
+
+
+
+
+
+
+
+
