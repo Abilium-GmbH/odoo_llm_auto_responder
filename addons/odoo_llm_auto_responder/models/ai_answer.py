@@ -32,6 +32,12 @@ class HelpdeskTicket(models.Model):
             _logger.info("LLM not available")
             raise AccessError("LLM not available")
 
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload'
+        }
+
+
 
 
 
