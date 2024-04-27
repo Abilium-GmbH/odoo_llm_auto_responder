@@ -13,7 +13,7 @@
                         <field name="closed_date" readonly="1"/>
                         <field name="ai_answer" />
                         <button string="Regenerate Answer" name="ai_answer_button" type="object"
-                                        class="oe_highlight" attrs="{'invisible' : [('stage_id', '!=', 1)]}"/>
+                                        class="oe_highlight" attrs="{'invisible' : [('stage_id', 'not in', (1, 2)]}"/>
                     </group>
                 </page>
             </xpath>
