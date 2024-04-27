@@ -1,6 +1,5 @@
 from odoo import fields, models, api
-import os
-import json
+from odoo.exceptions import AccessError
 import logging
 import requests
 _logger = logging.getLogger(__name__)
@@ -12,13 +11,12 @@ class HelpdeskTicket(models.Model):
 
     # adds a new field to the existing table of the ticket. There will be stored the generated answers of the AI.
     ai_answer = fields.Text(string="AI Answer")
-    ai_answer_ready = fields.Boolean(string="AI Answer is ready")
+    ai_answer_ready = fields.Boolean(string="AI Answer is ready", default=False)
 
     # this method gets called when button is clicked
     def ai_answer_button(self):
         _logger.info("Test button clicked..")
 
-        #self.ai_answer = 'KI responded with: ' + self.description
 
         json_data = {
             "qId": self.id,
@@ -26,10 +24,14 @@ class HelpdeskTicket(models.Model):
         }
 
 
-
         headers = {'Content-Type': 'application/json'}
         url = 'http://app:5000/data'
-        requests.post(url, json=json_data, headers=headers)
+        try:
+            requests.post(url, json=json_data, headers=headers)
+        except:
+            _logger.info("LLM not available")
+            raise AccessError("LLM not available")
+
 
 
 
