@@ -21,5 +21,6 @@
                 <p> <b>Antwort: </b> <t t-out="object.ai_answer" /> </p>
             </field>
         </record>
+        
     </data>
 </odoo>

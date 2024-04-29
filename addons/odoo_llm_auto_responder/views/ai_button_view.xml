@@ -1,5 +1,25 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <odoo>
+     <record id="ai_answer_view_form" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='assign_to_me']" position="after">
+                        <script>
+                            function show_answer(e){
+
+                           var notebook = $('.o_notebook');
+                            notebook.find($('ul > li')[2]).find('a')[0].click();
+
+                            }
+                        </script>
+                    <button name="show_ai_answer" string="AI Answered!" type="object" class="btn-primary"
+                            attrs="{'invisible': [('ai_answer_ready', '!=', True)]}"
+                            onclick="show_answer(event); return false;"/>
+
+                </xpath>
+        </field>
+    </record>
     <record id="helpdesk_ticket_form_view_extend" model="ir.ui.view">
         <field name="name">helpdesk.ticket.form.view.extend</field>
         <field name="model">helpdesk.ticket</field>
@@ -12,11 +32,15 @@
                         <field name="assigned_date" readonly="1"/>
                         <field name="closed_date" readonly="1"/>
                         <field name="ai_answer" />
+                        <field name="ai_answer_ready" invisible="1"/>
                         <button string="Regenerate Answer" name="ai_answer_button" type="object"
-                                        class="oe_highlight" attrs="{'invisible' : [('stage_id', '!=', 2)]}"/>
+                                        class="oe_highlight" attrs="{'invisible': [('stage_id', 'not in', (1, 2))]}"/>
+
+                        <div attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}" > <strong>Answer regenerated!</strong></div>
                     </group>
                 </page>
             </xpath>
         </field>
     </record>
+
 </odoo>

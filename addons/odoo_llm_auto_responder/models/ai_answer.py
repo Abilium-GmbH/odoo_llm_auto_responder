@@ -13,7 +13,10 @@ class HelpdeskTicket(models.Model):
     ai_answer = fields.Text(string="AI Answer")
     ai_answer_ready = fields.Boolean(string="AI Answer is ready", default=False)
 
+    #answer_regenerated = fields.Text(string="regenerated Answer!")
+
     # this method gets called when button is clicked
+
     def ai_answer_button(self):
         _logger.info("Test button clicked..")
 
@@ -23,6 +26,8 @@ class HelpdeskTicket(models.Model):
             "question": self.description,
         }
 
+        self.ai_answer = "new answer requested..."
+        self.ai_answer_ready=False
 
         headers = {'Content-Type': 'application/json'}
         url = 'http://app:5000/data'
@@ -32,8 +37,9 @@ class HelpdeskTicket(models.Model):
             _logger.info("LLM not available")
             raise AccessError("LLM not available")
 
-
-
+    def show_ai_answer(self):
+        _logger.info("showed answer...")
+        return None
 
 
 
