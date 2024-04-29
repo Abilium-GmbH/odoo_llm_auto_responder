@@ -35,8 +35,6 @@
                         <field name="ai_answer_ready" invisible="1"/>
                         <button string="Regenerate Answer" name="ai_answer_button" type="object"
                                         class="oe_highlight" attrs="{'invisible': [('stage_id', 'not in', (1, 2))]}"/>
-
-                        <div attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}" > <strong>Answer regenerated!</strong></div>
                     </group>
                 </page>
             </xpath>

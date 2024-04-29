@@ -21,6 +21,8 @@
                     <field name="stage_id" />
                     <field name="priority" widget="priority" />
                     <field name="assigned_date" />
+                    <field name="ai_answer_ready" invisible="1"/>
+                    <field name="ai_answer" />
                     <progressbar
                         field="activity_state"
                         colors="{&quot;planned&quot;: &quot;success&quot;, &quot;today&quot;: &quot;warning&quot;, &quot;overdue&quot;: &quot;danger&quot;}"
@@ -89,12 +91,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="o_kanban_record_body" style="height: 20px; width: 60px;">
-                                    <t t-if="stage_id != 'helpdesk_ticket_stage_in_progress'">
-                                        <div style="background-color: aliceblue; height: 100%;">
-                                            <a href="mailto:demo@demo.com"   style="font-weight: 600;">Reply</a>
+                                <div class="o_kanban_record_body" style="height: 20px; width: 200px;">
+
+                                        <div>
+                                            <a href="mailto:demo@demo.com"   style="font-weight: 400;" attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}">AI answer is ready!</a>
                                         </div>
-                                    </t>
+
                                 </div>
                                 <div class="o_kanban_record_bottom">
                                     <div class="oe_kanban_bottom_left">
