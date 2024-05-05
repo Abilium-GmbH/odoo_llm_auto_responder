@@ -33,12 +33,11 @@
                         <field name="closed_date" readonly="1"/>
                         <field name="ai_answer" />
                         <field name="ai_answer_ready" invisible="1"/>
-                        <button string="Regenerate Answer" name="ai_answer_button" type="object"
-                                        class="oe_highlight" attrs="{'invisible': [('stage_id', 'not in', (1, 2))]}"/>
+                        <button string="Generate Answer" name="ai_answer_button" type="object"
+                                        class="oe_highlight" attrs="{'invisible' : [('stage_id', 'not in', (1, 2))]}"/>
                     </group>
                 </page>
             </xpath>
         </field>
     </record>
-
 </odoo>

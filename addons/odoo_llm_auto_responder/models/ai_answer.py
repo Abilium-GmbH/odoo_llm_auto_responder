@@ -36,6 +36,18 @@ class HelpdeskTicket(models.Model):
             _logger.info("LLM not available")
             raise AccessError("LLM not available")
 
+        message = 'AI answer-generation is in progress, please reload the page'
+        return {'type': 'ir.actions.client',
+                'tag': 'display_notification',
+                'params': {'message': message,
+                           'type': 'success',
+                           'sticky': False,
+                           }
+                }
+
+
+
+
     def show_ai_answer(self):
         _logger.info("showed answer...")
         return None
