@@ -26,7 +26,6 @@ class HelpdeskTicket(models.Model):
             "question": self.description,
         }
 
-        self.ai_answer = "new answer requested..."
         self.ai_answer_ready=False
 
         headers = {'Content-Type': 'application/json'}
