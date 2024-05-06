@@ -53,7 +53,32 @@ class HelpdeskTicket(models.Model):
         return None
 
 
+    """@api.onchange('ai_answer_ready')
+    def onchange_ai_answer_ready(self):
+        _logger.info("onchange_ai_answer_ready triggered")
 
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload'
+        }"""
+
+
+    """@api.onchange('description')
+    def onchange_description(self):
+        _logger.info("onchange_description triggered")
+
+        json_data = {
+            "qId": self.id,
+            "question": self.description,
+        }
+
+        headers = {'Content-Type': 'application/json'}
+        url = 'http://app:5000/data'
+        try:
+            requests.post(url, json=json_data, headers=headers)
+        except:
+            _logger.info("LLM not available")
+            raise AccessError("Fehler")"""
 
 
 
