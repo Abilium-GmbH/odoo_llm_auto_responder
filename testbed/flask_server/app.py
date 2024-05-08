@@ -22,18 +22,22 @@ qa_pipeline = pipeline(
     tokenizer="deutsche-telekom/bert-multi-english-german-squad2"
 )
 
+
 # Create the db Class (items that will be stored in the db)
 class LLMRequest(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     context = db.Column(db.Text, nullable=False)
+
     def __repr__(self):
         return f'<LLMRequest {self.id}>'
+
 
 # create the db when the server is created
 with app.app_context():
     db.create_all()
 
-#function to store data in the db
+
+# function to store data in the db
 @app.route('/store', methods=['POST'])
 def store_data():
     try:
@@ -50,7 +54,7 @@ def store_data():
         return jsonify({'error': 'Failed to store data', 'exception': str(e)}), 500
 
 
-#function to load all data from the db
+# function to load all data from the db
 @app.route('/load', methods=['GET'])
 def load_data():
     try:
@@ -99,7 +103,7 @@ def llm_answer(data):
 
     answer = qa_pipeline(context=context, question=question)
     str_ans = answer.get("answer")
-    llm_return = {"params":{'id': qId, 'ai_answer': str_ans}}
+    llm_return = {"params": {'id': qId, 'ai_answer': str_ans}}
     logger.info(f"LLM return: {str_ans}")
     try:
         response = requests.post("http://web:8069/ai_answer/answer", json=llm_return)
