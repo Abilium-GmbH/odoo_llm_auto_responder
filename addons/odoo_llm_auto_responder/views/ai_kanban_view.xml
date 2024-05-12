@@ -74,12 +74,6 @@
                                                 type="delete"
                                                 class="dropdown-item"
                                             >Delete</a>
-                                            <a
-                                                t-if="widget.deletable"
-                                                role="menuitem"
-                                                type="copy"
-                                                class="dropdown-item"
-                                            >Copy Answer</a>
                                             <div
                                                 role="separator"
                                                 class="dropdown-divider"
