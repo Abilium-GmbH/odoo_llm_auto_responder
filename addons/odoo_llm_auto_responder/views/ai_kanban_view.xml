@@ -88,7 +88,7 @@
                                 <div class="o_kanban_record_body" style="height: 20px; width: 200px;">
 
                                         <div>
-                                            <a href="mailto:demo@demo.com"   style="font-weight: 400;" attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}">AI answer is ready!</a>
+                                            <a style="font-weight: 400;" attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}">AI answer is ready!</a>
                                         </div>
 
                                 </div>
