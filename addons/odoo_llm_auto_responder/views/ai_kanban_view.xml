@@ -10,117 +10,17 @@
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk_mgmt.view_helpdesk_ticket_kanban"/>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_mobile" default_group_by="stage_id">
-                    <field name="number" />
-                    <field name="active" />
-                    <field name="name" />
-                    <field name="partner_name" />
-                    <field name="user_id" />
-                    <field name="sequence" />
-                    <field name="color" />
-                    <field name="stage_id" />
-                    <field name="priority" widget="priority" />
-                    <field name="assigned_date" />
+                <xpath expr="//field[@name='number']" position="after">
                     <field name="ai_answer_ready" invisible="1"/>
-                    <field name="ai_answer" />
-                    <progressbar
-                        field="activity_state"
-                        colors="{&quot;planned&quot;: &quot;success&quot;, &quot;today&quot;: &quot;warning&quot;, &quot;overdue&quot;: &quot;danger&quot;}"
-                    />
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div
-                                t-attf-class="oe_kanban_color_#{kanban_getcolor(record.color.raw_value)} oe_kanban_content oe_kanban_global_click"
-                            >
-                                <div class="o_kanban_record_top">
-                                    <div class="o_kanban_record_headings">
-                                        <field name="name" />
-                                        <field
-                                            name="tag_ids"
-                                            widget="many2many_tags"
-                                            options="{'color_field': 'color'}"
-                                        />
-                                        <field name="number" />
-                                        <small class="o_kanban_record_subtitle text-muted">
-                                            <field name="partner_id" />
-                                        </small>
-                                    </div>
-                                    <div
-                                        class="o_dropdown_kanban dropdown"
-                                        t-if="!selection_mode"
-                                        groups="base.group_user"
-                                    >
-                                        <a
-                                            role="button"
-                                            class="dropdown-toggle o-no-caret btn"
-                                            data-toggle="dropdown"
-                                            data-display="static"
-                                            href="#"
-                                            aria-label="Dropdown menu"
-                                            title="Dropdown menu"
-                                        >
-                                            <span class="fa fa-ellipsis-v" />
-                                        </a>
-                                        <div class="dropdown-menu" role="menu">
-                                            <a
-                                                t-if="widget.editable"
-                                                role="menuitem"
-                                                type="edit"
-                                                class="dropdown-item"
-                                            >Edit Ticket</a>     <!--Edit zu edit ticket verändert -->
-                                            <a
-                                                t-if="widget.deletable"
-                                                role="menuitem"
-                                                type="delete"
-                                                class="dropdown-item"
-                                            >Delete</a>
-                                            <div
-                                                role="separator"
-                                                class="dropdown-divider"
-                                            />
-                                            <ul
-                                                class="oe_kanban_colorpicker"
-                                                data-field="color"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="o_kanban_record_body" style="height: 20px; width: 200px;">
-
-                                        <div>
-                                            <a style="font-weight: 400;" attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}">AI answer is ready!</a>
-                                        </div>
-
-                                </div>
-                                <div class="o_kanban_record_bottom">
-                                    <div class="oe_kanban_bottom_left">
-                                        <field name="priority" widget="priority" />
-                                        <field
-                                            name="activity_ids"
-                                            widget="kanban_activity"
-                                            related="activity_state"
-                                        />
-                                    </div>
-                                    <div class="oe_kanban_bottom_right">
-                                        <field
-                                            name="kanban_state"
-                                            widget="state_selection"
-                                        />
-                                        <field name="activity_state" invisible="1" />
-                                        <img
-                                            t-att-src="kanban_image('res.users', 'image_128', record.user_id.raw_value)"
-                                            t-att-title="record.user_id.value"
-                                            width="24"
-                                            height="24"
-                                            class="oe_kanban_avatar o_image_24_cover float-right"
-                                            t-att-alt="record.user_id.value"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </t>
-                    </templates>
-                </kanban>
+                    <field name="ai_answer"/>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_record_body')]" position="inside">
+                    <div>
+                        <a style="font-weight: 400;" attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}">AI answer
+                            is ready!
+                        </a>
+                    </div>
+                </xpath>
             </field>
         </record>
 
