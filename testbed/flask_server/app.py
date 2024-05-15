@@ -8,10 +8,13 @@ import logging
 import requests
 
 app = Flask(__name__)
+# set up executor (asynchronous execution of llm)
 executor = Executor(app)
+# set up database
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///llm_requests.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+# set up logger
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler()])
 
@@ -88,24 +91,27 @@ def welcome():
 def receive_data():
     # Assuming the incoming data is JSON
     data = request.get_json()
+    # run llm asynchronous
     executor.submit(llm_answer, data)
-    # You can process the data here and then respond
     return 'LLM started', 202
 
 
 def llm_answer(data):
+    # load context, question and questionId
     llm_requests = LLMRequest.query.all()
     context = "\n".join(req.context for req in llm_requests)
     question = data.get("question")
     qId = data.get("qId")
     if not context or not question:
         return logger.info("Please provide both a context and a question"), 400
-
+    # send question and context to llm for an answer
     answer = qa_pipeline(context=context, question=question)
     str_ans = answer.get("answer")
+    # format the llm answer
     llm_return = {"params": {'id': qId, 'ai_answer': str_ans}}
     logger.info(f"LLM return: {str_ans}")
     try:
+        # send to the odoo http controller
         response = requests.post("http://web:8069/ai_answer/answer", json=llm_return)
         logger.info(f"Response from AIAnswerController: {response.text}")
     except Exception as e:
