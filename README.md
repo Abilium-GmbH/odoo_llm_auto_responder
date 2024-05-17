@@ -57,4 +57,4 @@ curl -X POST -H "Content-Type: application/json" -d "{"context":"Insert context.
 
 
 ## Documentation
-For further instructions on how to install and use this module please refer to out [user manual](./Manual.pdf).
+For further instructions on how to install and use this module please refer out to [user manual](./Manual.pdf).
