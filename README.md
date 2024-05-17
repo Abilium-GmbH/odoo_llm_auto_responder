@@ -5,6 +5,8 @@ LLM auto responder is a module for the enterprise-resource-planning (ERP) softwa
 This module allows you to **generate LLM supported automatic answers** for odoo helpdesk tickets. 
 Therefore,it uses and is depending on the [Helpdesk Management](https://github.com/OCA/helpdesk/tree/16.0) module. 
 
+![odoo_llm_auto_responder](https://github.com/Abilium-GmbH/odoo_llm_auto_responder/assets/160774626/eaf18624-fc7a-4606-8807-c723bb2f4b91)
+
 
 **What sets this addon apart from other widespread chatbots is that the LLM runs locally on your system and
 uses your previous answers as new context for the answer generation.**
