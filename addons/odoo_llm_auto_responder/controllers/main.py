@@ -1,8 +1,7 @@
 from odoo import http
 import logging
+
 _logger = logging.getLogger(__name__)
-
-
 
 
 class AIAnswerController(http.Controller):
@@ -17,13 +16,3 @@ class AIAnswerController(http.Controller):
         answer_status = http.request.env['helpdesk.ticket'].sudo().search([('id', '=', kw['id'])])
         answer_status.write({'ai_answer_ready': True})
         return 1
-
-    """def answer_ready_notification(self):
-        message = 'AI Answer is generated and saved'
-        return {'type': 'ir.actions.client',
-                'tag': 'display_notification',
-                'params': {'message': message,
-                           'type': 'success',
-                           'sticky': False,
-                           }
-                }"""

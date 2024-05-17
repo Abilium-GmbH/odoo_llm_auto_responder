@@ -7,7 +7,7 @@
 		""",
 
     'description': """
-	    
+	    This module allows you to generate llm supported automatic responses for odoo helpdesk tickets. Therefore it uses and is depending on the Helpdesk Management module.
 	""",
 
     'author': "Abilium GmbH",

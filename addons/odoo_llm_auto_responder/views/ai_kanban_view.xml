@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <data>
-
         <!-- Inheriting the Kanban view for tickets from Helpdesk Management module -->
-
         <record id="my_helpdesk_ticket_kanban_inherit" model="ir.ui.view">
             <field name="name">my.helpdesk.ticket.kanban.inherit</field>
             <field name="model">helpdesk.ticket</field>
@@ -23,7 +20,5 @@
                 </xpath>
             </field>
         </record>
-
     </data>
-
 </odoo>
