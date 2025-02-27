@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inheriting the Kanban view for tickets from Helpdesk Management module -->
+        <record id="my_helpdesk_ticket_kanban_inherit" model="ir.ui.view">
+            <field name="name">my.helpdesk.ticket.kanban.inherit</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk_mgmt.view_helpdesk_ticket_kanban"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='number']" position="after">
+                    <field name="ai_answer_ready" invisible="1"/>
+                    <field name="ai_answer"/>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_record_body')]" position="inside">
+                    <div>
+                        <a style="font-weight: 400;" attrs="{'invisible' : [('ai_answer_ready', '!=', True)]}">AI answer
+                            is ready!
+                        </a>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

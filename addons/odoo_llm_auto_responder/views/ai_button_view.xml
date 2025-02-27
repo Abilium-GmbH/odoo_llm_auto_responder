@@ -1,0 +1,32 @@
+<odoo>
+    <record id="ai_button_and_ticket_form_view_extend" model="ir.ui.view">
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk_mgmt.ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='assign_to_me']" position="after">
+                <script>
+                    function show_answer(e){
+                        var notebook = $('.o_notebook');
+                        notebook.find($('ul > li')[2]).find('a')[0].click();
+                    }
+                </script>
+                <button name="show_ai_answer" string="AI Answered!" type="object" class="btn-primary"
+                        attrs="{'invisible': [('ai_answer_ready', '!=', True)]}"
+                        onclick="show_answer(event); return false;"/>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page[@name='other_info']" position="after">
+                <page string="AI Answer" name="ai_answer">
+                    <group>
+                        <field name="last_stage_update" readonly="1"/>
+                        <field name="assigned_date" readonly="1"/>
+                        <field name="closed_date" readonly="1"/>
+                        <field name="ai_answer" />
+                        <field name="ai_answer_ready" invisible="1"/>
+                        <button string="Generate Answer" name="ai_answer_button" type="object"
+                                class="oe_highlight" attrs="{'invisible' : [('stage_id', 'not in', (1, 2))]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
